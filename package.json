@@ -1,0 +1,23 @@
+{
+  "name": "nodejs-ai-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/utkarshtripathi28/nodejs-ai-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/utkarshtripathi28/nodejs-ai-project/issues"
+  },
+  "homepage": "https://github.com/utkarshtripathi28/nodejs-ai-project#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "openai": "^5.15.0"
+  }
+}
