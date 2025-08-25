@@ -10,7 +10,6 @@ const getInput = async(req, res)=>{
         if(!prompt){
             return res.status(400).json({error: "Prompt is required"});
         }
-        // Call OpenAI API here with the prompt
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages:[{
