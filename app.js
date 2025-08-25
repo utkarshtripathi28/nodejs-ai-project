@@ -1,23 +1,12 @@
-import OpenAI from "openai";
-import dotenv from "dotenv";
-dotenv.config();
-const apiKey = process.env.OPENAI_API_KEY;
-console.log("API Key:", apiKey); // Debugging line to check if the key is loaded
-const openAi = new OpenAI(apiKey);
-const main = async() => {
-    try {
-        const prompt = "Create a fitness training program for a beginner.";
-        const response = await openAi.chat.completions.create({
-            model: "gpt-3.5-turbo",
-            messages: [{
-                role: "user",
-                content: prompt
-            }]
-        })
-        console.log(response.choices[0].message.content);
-        // console.log("Response received", response.);
-    } catch (error) {
-        console.error("An error occurred:", error);
-    }
-}
-await main()
+const express = require("express");
+const routes = require('./routes');
+const app = express();
+app.use(express.json());
+const PORT = 3000;
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+});
+app.use('/api/v1/user', routes.user);
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
