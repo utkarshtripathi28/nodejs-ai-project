@@ -4,9 +4,7 @@ const apiKey = process.env.OPENAI_API_KEY
 const getInput = async(req, res)=>{
     const openai = new OpenAI(apiKey)
     try {
-        console.log("apiKey----", apiKey);
         const {prompt} = req.body
-        console.log("prompt----", prompt);
         if(!prompt){
             return res.status(400).json({error: "Prompt is required"});
         }
