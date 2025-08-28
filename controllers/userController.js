@@ -1,4 +1,5 @@
 const OpenAI = require("openai");
+const { resErrorOccured, resFound, resServerError } = require("../utils/response");
 const apiKey = process.env.OPENAI_API_KEY
 
 const getInput = async(req, res)=>{
@@ -6,7 +7,7 @@ const getInput = async(req, res)=>{
     try {
         const {prompt} = req.body
         if(!prompt){
-            return res.status(400).json({error: "Prompt is required"});
+            return resErrorOccured(res, "Prompt is required");
         }
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
@@ -16,11 +17,11 @@ const getInput = async(req, res)=>{
             }]
         })
         if(response && response.choices[0].message.content){
-            return res.status(200).json({output: response.choices[0].message.content});
+            return resFound(res, response.choices[0].message.content);
         }
-        return res.status(400).json({error: "No response from AI"});
+        return resErrorOccured(res, "No response from AI");
     } catch (error) {
-       return res.status(500).json({error: "Internal Server Error"}); 
+       return resServerError(res, error); 
     }
 }
 
